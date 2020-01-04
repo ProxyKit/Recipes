@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Recipes</AssemblyName>
     <RootNamespace>ProxyKit.Recipes</RootNamespace>
     <LangVersion>latest</LangVersion>
@@ -9,13 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CacheCow.Client" Version="2.5.8" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CacheCow.Client" Version="2.6.1" />
     <PackageReference Include="Consul" Version="0.7.2.6" />
     <PackageReference Include="EasyConsoleStd" Version="2.0.0" />
-    <PackageReference Include="IPNetwork2" Version="2.4.0.159" />
+    <PackageReference Include="IPNetwork2" Version="2.4.0.169" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.1.1" />
-    <PackageReference Include="ProxyKit" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.0" />
+    <PackageReference Include="ProxyKit" Version="2.3.0" />
+    <PackageReference Include="ProxyKit.RoutingHandler" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
