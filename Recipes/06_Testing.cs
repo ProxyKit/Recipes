@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
@@ -17,8 +17,8 @@ namespace ProxyKit.Recipes
 {
     public class Testing
     {
-        public async Task Run(CancellationToken cancellationToken)
-        {
+         public async Task Run(CancellationToken cancellationToken)
+         {
             var router = new RoutingMessageHandler();
 
             // Build Proxy TestServer
@@ -31,7 +31,7 @@ namespace ProxyKit.Recipes
                 })
                 .UseUrls("http://localhost:5000");
             var proxyTestServer = new TestServer(proxyWebHostBuilder);
-            router.AddHandler("http://localhost:500", proxyTestServer.CreateHandler());
+            router.AddHandler("localhost", 5000, proxyTestServer.CreateHandler());
 
             // Build Host1 TestServer
             var host1WebHostBuilder = new WebHostBuilder()
@@ -39,7 +39,7 @@ namespace ProxyKit.Recipes
                 .UseSetting("hostname", "HOST 1")
                 .UseUrls("http://localhost:5001");
             var host1TestServer = new TestServer(host1WebHostBuilder);
-            router.AddHandler("http://localhost:5001", host1TestServer.CreateHandler());
+            router.AddHandler("localhost", 5001, host1TestServer.CreateHandler());
 
             // Build Host2 TestServer
             var host2WebHostBuilder = new WebHostBuilder()
@@ -47,7 +47,7 @@ namespace ProxyKit.Recipes
                 .UseSetting("hostname", "HOST 2")
                 .UseUrls("http://localhost:5002");
             var host2TestServer = new TestServer(host2WebHostBuilder);
-            router.AddHandler("http://localhost:5002", host2TestServer.CreateHandler());
+            router.AddHandler("localhost", 5002, host2TestServer.CreateHandler());
 
             // Get HttpClient make a request to the proxy
 
@@ -69,7 +69,7 @@ namespace ProxyKit.Recipes
             {
                 // Set the primary handler to the injected handler 
                 // so upstream requests are sent to the router
-                services.AddProxy(httpClientBuilder 
+                services.AddProxy(httpClientBuilder
                     => httpClientBuilder.ConfigurePrimaryHttpMessageHandler(_createHandler));
             }
 
